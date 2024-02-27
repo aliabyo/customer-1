@@ -22,7 +22,7 @@ class WebServer():
 
 class RunBot():
   room_id = "65973a6c5ae45c9ac1b5b7ed"
-  bot_token = "f12287e3fe78370f402ddaa85cf846b80bef5c62663dfa635147be3ae32dbd36"
+  bot_token =  os.environ['Token']
   bot_file = "main"
   bot_class = "Bot"
   def __init__(self) -> None:
