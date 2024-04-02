@@ -117,7 +117,7 @@ import contextlib
 import logging
 from highrise import BaseBot, AnchorPosition, Position, User, TaskGroup
 
-moderators = ['TOMY_X', "mvash", "ncv.k", "Deadlywaifu", "Louiville", "lissatrap", "Coiieen"]
+moderators = ['TOMY_X','MeroHR','mvash', 'NCV.K', 'DeadlyWaifu', 'Louiville', 'lissatrap', 'CoIIeen']
 
 class BotDefinition:
     def __init__(self, bot, room_id, api_token):
@@ -130,7 +130,7 @@ class ResponseError(Exception):
 class Counter:
     bot_id = ""
     static_ctr = 0
-    usernames = ['TOMY_X', "mvash", "ncv.k", "deadlywaifu", "Louiville", "lissatrap"]
+    usernames = ['TOMY_X','MeroHR','mvash', 'NCV.K', 'DeadlyWaifu', 'Louiville', 'lissatrap', 'CoIIeen']
 
 class MyBot(BaseBot):
 
@@ -407,7 +407,7 @@ class MyBot(BaseBot):
           self.moderators = []
 
       # Add default moderators here
-      default_moderators =['TOMY_X', "mvash", "ncv.k", "Deadlywaifu", "Louiville", "lissatrap", "Coiieen"]
+      default_moderators =['TOMY_X','MeroHR','mvash', 'NCV.K', 'Deadlywaifu', 'Louiville', 'lissatrap', 'CoIIeen']
       for mod in default_moderators:
           if mod.lower() not in self.moderators:
               self.moderators.append(mod.lower())
@@ -1143,27 +1143,17 @@ class MyBot(BaseBot):
               await self.highrise.tip_user(roomUser.id, "gold_bar_1")
               await self.highrise.chat(f"Tipped {roomUser.username} 1 gold.")
 
-
-        if message == ("/tip 20 1g") and user.username in moderators:
-          roomUsers = (await self.highrise.get_room_users()).content
-        # Shuffle the list to ensure randomness
-          random.shuffle(roomUsers)
-        # Select the first three users
-          selected_users = roomUsers[:20]
-          for roomUser, _ in selected_users:
-              await self.highrise.tip_user(roomUser.id, "gold_bar_1")
-              await self.highrise.chat(f"Tipped {roomUser.username} 1 gold.")
-
         if message.startswith("!tip ") and user.username in moderators:
           try:
+              await self.highrise.chat(f"𝔫𝔬𝔴 𝔞𝔩𝔩 𝔤𝔢𝔱 𝔱𝔦𝔭 𝔣𝔯𝔬𝔪 @{user.username}")
               tip_amount = int(message.split(" ")[1])
           except IndexError:
-              await self.highrise.chat("can you write the right.")
+              await self.highrise.chat("plz add how much you want to tip all")
               return
           except ValueError:
-              await self.highrise.chat("can you wtite the right command !tip amount.")
+              await self.highrise.chat("CAN YOU WRITE THE RIGHT COMMAND !tip amount")
               return
-          if user.username in ['TOMY_X', "mvash", "ncv.k", "Deadlywaifu", "Louiville", "lissatrap", "Coiieen"]:
+          if user.username in ['TOMY_X','MeroHR','mvash', 'NCV.K', 'DeadlyWaifu', 'Louiville', 'lissatrap', 'CoIIeen']:
               response = await self.highrise.get_room_users()
               num_users = len(response.content)
               total_gold = tip_amount * num_users
@@ -1177,6 +1167,19 @@ class MyBot(BaseBot):
                       await self.highrise.tip_user(user_id, f"gold_bar_{tip_amount}")
               else:
                   await self.highrise.chat("send gold to send tips")
+      
+
+        if message == ("/tip 20 1g") and user.username in moderators:
+          roomUsers = (await self.highrise.get_room_users()).content
+        # Shuffle the list to ensure randomness
+          random.shuffle(roomUsers)
+        # Select the first three users
+          selected_users = roomUsers[:20]
+          for roomUser, _ in selected_users:
+              await self.highrise.tip_user(roomUser.id, "gold_bar_1")
+              await self.highrise.chat(f"Tipped {roomUser.username} 1 gold.")
+
+        
 
         if message.startswith("!kick"):
           if user.username.lower() in self.moderators:
