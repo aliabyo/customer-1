@@ -117,7 +117,7 @@ import contextlib
 import logging
 from highrise import BaseBot, AnchorPosition, Position, User, TaskGroup
 
-moderators = ['TOMY_X', "mvash", "ncv.k", "deadlywaifu", "Louiville", "lissatrap"]
+moderators = ['TOMY_X', "mvash", "ncv.k", "Deadlywaifu", "Louiville", "lissatrap", "Coiieen"]
 
 class BotDefinition:
     def __init__(self, bot, room_id, api_token):
@@ -407,7 +407,7 @@ class MyBot(BaseBot):
           self.moderators = []
 
       # Add default moderators here
-      default_moderators =['TOMY_X', "mvash", "ncv.k", "deadlywaifu", "Louiville", "lissatrap"]
+      default_moderators =['TOMY_X', "mvash", "ncv.k", "Deadlywaifu", "Louiville", "lissatrap", "Coiieen"]
       for mod in default_moderators:
           if mod.lower() not in self.moderators:
               self.moderators.append(mod.lower())
@@ -816,7 +816,345 @@ class MyBot(BaseBot):
                 task = asyncio.create_task(self.send_continuous_emote(emote_id, user.id,delay))
                 self.continuous_emote_tasks[user.id] = task
 
-        if message.startswith("!tip "):
+        if message.lower().startswith("/getitem"):
+          outfit_response = await self.highrise.get_my_outfit()
+          fifth_item = outfit_response.outfit[4].id
+          item_response = await self.webapi.get_item(item_id=fifth_item)
+          print (item_response)
+
+        if message.startswith("-heart all"):
+          if user.username.lower() in self.moderators:
+            roomUsers = (await self.highrise.get_room_users()).content
+            for roomUser, _ in roomUsers:
+               await self.highrise.react("heart", roomUser.id)
+       
+#tip 5
+
+       
+        if message == ("/tip 2 5g") and user.username in moderators:
+          roomUsers = (await self.highrise.get_room_users()).content
+        # Shuffle the list to ensure randomness
+          random.shuffle(roomUsers)
+        # Select the first three users
+          selected_users = roomUsers[:2]
+          for roomUser, _ in selected_users:
+              await self.highrise.tip_user(roomUser.id, "gold_bar_5")
+              await self.highrise.chat(f"Tipped {roomUser.username} 5 gold.")
+
+
+        if message == ("/tip 3 5g") and user.username in moderators:
+          roomUsers = (await self.highrise.get_room_users()).content
+        # Shuffle the list to ensure randomness
+          random.shuffle(roomUsers)
+        # Select the first three users
+          selected_users = roomUsers[:3]
+          for roomUser, _ in selected_users:
+              await self.highrise.tip_user(roomUser.id, "gold_bar_5")
+              await self.highrise.chat(f"Tipped {roomUser.username} 5 gold.")
+
+        if message == ("/tip 4 5g") and user.username in moderators:
+          roomUsers = (await self.highrise.get_room_users()).content
+        # Shuffle the list to ensure randomness
+          random.shuffle(roomUsers)
+        # Select the first three users
+          selected_users = roomUsers[:4]
+          for roomUser, _ in selected_users:
+              await self.highrise.tip_user(roomUser.id, "gold_bar_5")
+              await self.highrise.chat(f"Tipped {roomUser.username} 5 gold.")
+
+
+        if message == ("/tip 5 5g") and user.username in moderators:
+          roomUsers = (await self.highrise.get_room_users()).content
+        # Shuffle the list to ensure randomness
+          random.shuffle(roomUsers)
+        # Select the first three users
+          selected_users = roomUsers[:5]
+          for roomUser, _ in selected_users:
+              await self.highrise.tip_user(roomUser.id, "gold_bar_5")
+              await self.highrise.chat(f"Tipped {roomUser.username} 5 gold.")
+
+
+        if message == ("/tip 6 5g") and user.username in moderators:
+          roomUsers = (await self.highrise.get_room_users()).content
+        # Shuffle the list to ensure randomness
+          random.shuffle(roomUsers)
+        # Select the first three users
+          selected_users = roomUsers[:6]
+          for roomUser, _ in selected_users:
+              await self.highrise.tip_user(roomUser.id, "gold_bar_5")
+              await self.highrise.chat(f"Tipped {roomUser.username} 5 gold.")
+
+        if message == ("/tip 7 5g") and user.username in moderators:
+          roomUsers = (await self.highrise.get_room_users()).content
+        # Shuffle the list to ensure randomness
+          random.shuffle(roomUsers)
+        # Select the first three users
+          selected_users = roomUsers[:7]
+          for roomUser, _ in selected_users:
+              await self.highrise.tip_user(roomUser.id, "gold_bar_5")
+              await self.highrise.chat(f"Tipped {roomUser.username} 5 gold.")
+
+        if message == ("/tip 8 5g") and user.username in moderators:
+          roomUsers = (await self.highrise.get_room_users()).content
+        # Shuffle the list to ensure randomness
+          random.shuffle(roomUsers)
+        # Select the first three users
+          selected_users = roomUsers[:8]
+          for roomUser, _ in selected_users:
+              await self.highrise.tip_user(roomUser.id, "gold_bar_5")
+              await self.highrise.chat(f"Tipped {roomUser.username} 5 gold.")
+
+
+        if message == ("/tip 9 5g") and user.username in moderators:
+          roomUsers = (await self.highrise.get_room_users()).content
+        # Shuffle the list to ensure randomness
+          random.shuffle(roomUsers)
+        # Select the first three users
+          selected_users = roomUsers[:9]
+          for roomUser, _ in selected_users:
+              await self.highrise.tip_user(roomUser.id, "gold_bar_5")
+              await self.highrise.chat(f"Tipped {roomUser.username} 5 gold.")
+
+
+        if message == ("/tip 10 5g") and user.username in moderators:
+          roomUsers = (await self.highrise.get_room_users()).content
+        # Shuffle the list to ensure randomness
+          random.shuffle(roomUsers)
+        # Select the first three users
+          selected_users = roomUsers[:10]
+          for roomUser, _ in selected_users:
+              await self.highrise.tip_user(roomUser.id, "gold_bar_5")
+              await self.highrise.chat(f"Tipped {roomUser.username} 5 gold.")
+
+
+        if message == ("/tip 20 5g") and user.username in moderators:
+          roomUsers = (await self.highrise.get_room_users()).content
+        # Shuffle the list to ensure randomness
+          random.shuffle(roomUsers)
+        # Select the first three users
+          selected_users = roomUsers[:20]
+          for roomUser, _ in selected_users:
+              await self.highrise.tip_user(roomUser.id, "gold_bar_5")
+              await self.highrise.chat(f"Tipped {roomUser.username} 5 gold.")
+
+#tip 10g
+
+        if message == ("/tip 2 10g") and user.username in moderators:
+          roomUsers = (await self.highrise.get_room_users()).content
+        # Shuffle the list to ensure randomness
+          random.shuffle(roomUsers)
+        # Select the first three users
+          selected_users = roomUsers[:2]
+          for roomUser, _ in selected_users:
+              await self.highrise.tip_user(roomUser.id, "gold_bar_10")
+              await self.highrise.chat(f"Tipped {roomUser.username} 10 gold.")
+
+
+        if message == ("/tip 3 10g") and user.username in moderators:
+          roomUsers = (await self.highrise.get_room_users()).content
+        # Shuffle the list to ensure randomness
+          random.shuffle(roomUsers)
+        # Select the first three users
+          selected_users = roomUsers[:3]
+          for roomUser, _ in selected_users:
+              await self.highrise.tip_user(roomUser.id, "gold_bar_10")
+              await self.highrise.chat(f"Tipped {roomUser.username} 10 gold.")
+
+        if message == ("/tip 4 10g") and user.username in moderators:
+          roomUsers = (await self.highrise.get_room_users()).content
+        # Shuffle the list to ensure randomness
+          random.shuffle(roomUsers)
+        # Select the first three users
+          selected_users = roomUsers[:4]
+          for roomUser, _ in selected_users:
+              await self.highrise.tip_user(roomUser.id, "gold_bar_10")
+              await self.highrise.chat(f"Tipped {roomUser.username} 10 gold.")
+
+
+        if message == ("/tip 5 10g") and user.username in moderators:
+          roomUsers = (await self.highrise.get_room_users()).content
+        # Shuffle the list to ensure randomness
+          random.shuffle(roomUsers)
+        # Select the first three users
+          selected_users = roomUsers[:5]
+          for roomUser, _ in selected_users:
+              await self.highrise.tip_user(roomUser.id, "gold_bar_10")
+              await self.highrise.chat(f"Tipped {roomUser.username} 10 gold.")
+
+
+        if message == ("/tip 6 10g") and user.username in moderators:
+          roomUsers = (await self.highrise.get_room_users()).content
+        # Shuffle the list to ensure randomness
+          random.shuffle(roomUsers)
+        # Select the first three users
+          selected_users = roomUsers[:6]
+          for roomUser, _ in selected_users:
+              await self.highrise.tip_user(roomUser.id, "gold_bar_10")
+              await self.highrise.chat(f"Tipped {roomUser.username} 10 gold.")
+
+        if message == ("/tip 7 10g") and user.username in moderators:
+          roomUsers = (await self.highrise.get_room_users()).content
+        # Shuffle the list to ensure randomness
+          random.shuffle(roomUsers)
+        # Select the first three users
+          selected_users = roomUsers[:7]
+          for roomUser, _ in selected_users:
+              await self.highrise.tip_user(roomUser.id, "gold_bar_10")
+              await self.highrise.chat(f"Tipped {roomUser.username} 10 gold.")
+
+        if message == ("/tip 8 10g") and user.username in moderators:
+          roomUsers = (await self.highrise.get_room_users()).content
+        # Shuffle the list to ensure randomness
+          random.shuffle(roomUsers)
+        # Select the first three users
+          selected_users = roomUsers[:8]
+          for roomUser, _ in selected_users:
+              await self.highrise.tip_user(roomUser.id, "gold_bar_10")
+              await self.highrise.chat(f"Tipped {roomUser.username} 10 gold.")
+
+
+        if message == ("/tip 9 10g") and user.username in moderators:
+          roomUsers = (await self.highrise.get_room_users()).content
+        # Shuffle the list to ensure randomness
+          random.shuffle(roomUsers)
+        # Select the first three users
+          selected_users = roomUsers[:9]
+          for roomUser, _ in selected_users:
+              await self.highrise.tip_user(roomUser.id, "gold_bar_10")
+              await self.highrise.chat(f"Tipped {roomUser.username} 10 gold.")
+
+
+        if message == ("/tip 10 10g") and user.username in moderators:
+          roomUsers = (await self.highrise.get_room_users()).content
+        # Shuffle the list to ensure randomness
+          random.shuffle(roomUsers)
+        # Select the first three users
+          selected_users = roomUsers[:10]
+          for roomUser, _ in selected_users:
+              await self.highrise.tip_user(roomUser.id, "gold_bar_10")
+              await self.highrise.chat(f"Tipped {roomUser.username} 10 gold.")
+
+
+        if message == ("/tip 20 10g") and user.username in moderators:
+          roomUsers = (await self.highrise.get_room_users()).content
+        # Shuffle the list to ensure randomness
+          random.shuffle(roomUsers)
+        # Select the first three users
+          selected_users = roomUsers[:20]
+          for roomUser, _ in selected_users:
+              await self.highrise.tip_user(roomUser.id, "gold_bar_10")
+              await self.highrise.chat(f"Tipped {roomUser.username} 10 gold.")
+
+
+#tip 1
+
+        if message == ("/tip 2 1g") and user.username in moderators:
+          roomUsers = (await self.highrise.get_room_users()).content
+        # Shuffle the list to ensure randomness
+          random.shuffle(roomUsers)
+        # Select the first three users
+          selected_users = roomUsers[:2]
+          for roomUser, _ in selected_users:
+              await self.highrise.tip_user(roomUser.id, "gold_bar_1")
+              await self.highrise.chat(f"Tipped {roomUser.username} 1 gold.")
+
+
+        if message == ("/tip 3 1g") and user.username in moderators:
+          roomUsers = (await self.highrise.get_room_users()).content
+        # Shuffle the list to ensure randomness
+          random.shuffle(roomUsers)
+        # Select the first three users
+          selected_users = roomUsers[:3]
+          for roomUser, _ in selected_users:
+              await self.highrise.tip_user(roomUser.id, "gold_bar_1")
+              await self.highrise.chat(f"Tipped {roomUser.username} 1 gold.")
+
+        if message == ("/tip 4 1g") and user.username in moderators:
+          roomUsers = (await self.highrise.get_room_users()).content
+        # Shuffle the list to ensure randomness
+          random.shuffle(roomUsers)
+        # Select the first three users
+          selected_users = roomUsers[:4]
+          for roomUser, _ in selected_users:
+              await self.highrise.tip_user(roomUser.id, "gold_bar_1")
+              await self.highrise.chat(f"Tipped {roomUser.username} 1 gold.")
+
+
+        if message == ("/tip 5 1g") and user.username in moderators:
+          roomUsers = (await self.highrise.get_room_users()).content
+        # Shuffle the list to ensure randomness
+          random.shuffle(roomUsers)
+        # Select the first three users
+          selected_users = roomUsers[:5]
+          for roomUser, _ in selected_users:
+              await self.highrise.tip_user(roomUser.id, "gold_bar_1")
+              await self.highrise.chat(f"Tipped {roomUser.username} 1 gold.")
+
+
+        if message == ("/tip 6 1g") and user.username in moderators:
+          roomUsers = (await self.highrise.get_room_users()).content
+        # Shuffle the list to ensure randomness
+          random.shuffle(roomUsers)
+        # Select the first three users
+          selected_users = roomUsers[:6]
+          for roomUser, _ in selected_users:
+              await self.highrise.tip_user(roomUser.id, "gold_bar_1")
+              await self.highrise.chat(f"Tipped {roomUser.username} 1 gold.")
+
+        if message == ("/tip 7 1g") and user.username in moderators:
+          roomUsers = (await self.highrise.get_room_users()).content
+        # Shuffle the list to ensure randomness
+          random.shuffle(roomUsers)
+        # Select the first three users
+          selected_users = roomUsers[:7]
+          for roomUser, _ in selected_users:
+              await self.highrise.tip_user(roomUser.id, "gold_bar_1")
+              await self.highrise.chat(f"Tipped {roomUser.username} 1 gold.")
+
+        if message == ("/tip 8 1g") and user.username in moderators:
+          roomUsers = (await self.highrise.get_room_users()).content
+        # Shuffle the list to ensure randomness
+          random.shuffle(roomUsers)
+        # Select the first three users
+          selected_users = roomUsers[:8]
+          for roomUser, _ in selected_users:
+              await self.highrise.tip_user(roomUser.id, "gold_bar_1")
+              await self.highrise.chat(f"Tipped {roomUser.username} 1 gold.")
+
+
+        if message == ("/tip 9 1g") and user.username in moderators:
+          roomUsers = (await self.highrise.get_room_users()).content
+        # Shuffle the list to ensure randomness
+          random.shuffle(roomUsers)
+        # Select the first three users
+          selected_users = roomUsers[:9]
+          for roomUser, _ in selected_users:
+              await self.highrise.tip_user(roomUser.id, "gold_bar_5")
+              await self.highrise.chat(f"Tipped {roomUser.username} 5 gold.")
+
+
+        if message == ("/tip 10 1g") and user.username in moderators:
+          roomUsers = (await self.highrise.get_room_users()).content
+        # Shuffle the list to ensure randomness
+          random.shuffle(roomUsers)
+        # Select the first three users
+          selected_users = roomUsers[:10]
+          for roomUser, _ in selected_users:
+              await self.highrise.tip_user(roomUser.id, "gold_bar_1")
+              await self.highrise.chat(f"Tipped {roomUser.username} 1 gold.")
+
+
+        if message == ("/tip 20 1g") and user.username in moderators:
+          roomUsers = (await self.highrise.get_room_users()).content
+        # Shuffle the list to ensure randomness
+          random.shuffle(roomUsers)
+        # Select the first three users
+          selected_users = roomUsers[:20]
+          for roomUser, _ in selected_users:
+              await self.highrise.tip_user(roomUser.id, "gold_bar_1")
+              await self.highrise.chat(f"Tipped {roomUser.username} 1 gold.")
+
+        if message.startswith("!tip ") and user.username in moderators:
           try:
               tip_amount = int(message.split(" ")[1])
           except IndexError:
@@ -825,7 +1163,7 @@ class MyBot(BaseBot):
           except ValueError:
               await self.highrise.chat("can you wtite the right command !tip amount.")
               return
-          if user.username in ['TOMY_X', "mvash", "ncv.k", "deadlywaifu", "Louiville", "lissatrap","NCV.K"]:
+          if user.username in ['TOMY_X', "mvash", "ncv.k", "Deadlywaifu", "Louiville", "lissatrap", "Coiieen"]:
               response = await self.highrise.get_room_users()
               num_users = len(response.content)
               total_gold = tip_amount * num_users
@@ -2718,7 +3056,7 @@ class MyBot(BaseBot):
                     await self.highrise.send_whisper(user.id, chunk)
         
 
-        if message.startswith("!modcommands"):
+        if message.startswith("!commands"):
                 help_message = (
                     "Available Commands:\n"
                     "!time @username - Check remaining time for temporary VIP status\n"
@@ -2747,7 +3085,7 @@ class MyBot(BaseBot):
                     await self.highrise.send_whisper(user.id, chunk)
 
         
-        if message.startswith("!modcommands"):
+        if message.startswith("!commands"):
           help_message = (
               
               "❤️ this reaction make user mod in code permanent (Modrators)\n"
@@ -2877,7 +3215,7 @@ class MyBot(BaseBot):
 
       if reaction =="thumbs"and user.username in moderators:
          target_username = receiver.username
-         if target_username not in ['TOMY_X','TOMY_X']:
+         if target_username not in moderators:
             await self.teleport_user_next_to(target_username, user)
 
       if reaction =="thumbs"and user.username in moderators:
@@ -2892,7 +3230,7 @@ class MyBot(BaseBot):
 
       if reaction =="thumbs"and user.username in moderators:
          target_username = receiver.username
-         if target_username not in ['deadlywaifu','deadlywaifu']:
+         if target_username not in ['Deadlywaifu','deadlywaifu']:
             await self.teleport_user_next_to(target_username, user)
 
       if reaction =="thumbs"and user.username in moderators:
@@ -2908,6 +3246,11 @@ class MyBot(BaseBot):
       if reaction =="thumbs"and user.username in moderators:
          target_username = receiver.username
          if target_username not in ['ersp','ersp']:
+            await self.teleport_user_next_to(target_username, user)
+
+      if reaction =="thumbs"and user.username in moderators:
+         target_username = receiver.username
+         if target_username not in ['Coiieen','Coiieen']:
             await self.teleport_user_next_to(target_username, user)
 
       
