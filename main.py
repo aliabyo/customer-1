@@ -117,7 +117,7 @@ import contextlib
 import logging
 from highrise import BaseBot, AnchorPosition, Position, User, TaskGroup
 
-moderators = ['TOMY_X','MeroHR','mvash', 'NCV.K', 'DeadlyWaifu', 'Louiville', 'lissatrap', 'CoIIeen']
+moderators = ['TOMY_X','MeroHR','mvash', 'NCV.K', 'DeadlyWaifu', 'Louiville', 'lissatrap', 'CoIIeen', 'PandiStories']
 
 class BotDefinition:
     def __init__(self, bot, room_id, api_token):
@@ -130,13 +130,9 @@ class ResponseError(Exception):
 class Counter:
     bot_id = ""
     static_ctr = 0
-    usernames = ['TOMY_X','MeroHR','mvash', 'NCV.K', 'DeadlyWaifu', 'Louiville', 'lissatrap', 'CoIIeen']
+    usernames = ['TOMY_X','MeroHR','Mvash', 'NCV.K', 'DeadlyWaifu', 'Louiville', 'lissatrap', 'CoIIeen', 'PandiStories','StaceyHR','moonshxnee', 'SketchyLove', 'dvniz', 'wasvbi', 'Meetubear', 'JayBracks', 'IIX.AMORE', 'ersp', 'FRUITYPOPPlN', 'gungeon', 'pipnguyen', 'Badjujuxix', 'Jezyi', '_MiIk_', 'BIGG__E', 'BIGG__E', 'kvshy', 'EmoAshh', 'Xavr', 'Mvrianna','Srijon','__Shy___']
 
 class MyBot(BaseBot):
-
-    
-
-    
 
     continuous_emote_tasks: Dict[int, asyncio.Task[Any]] = {}  
     user_data: Dict[int, Dict[str, Any]] = {}
@@ -407,7 +403,7 @@ class MyBot(BaseBot):
           self.moderators = []
 
       # Add default moderators here
-      default_moderators =['TOMY_X','MeroHR','mvash', 'NCV.K', 'Deadlywaifu', 'Louiville', 'lissatrap', 'CoIIeen']
+      default_moderators =['TOMY_X','MeroHR','Mvash', 'NCV.K', 'DeadlyWaifu', 'Louiville', 'lissatrap', 'CoIIeen', 'PandiStories','StaceyHR','moonshxnee', 'SketchyLove', 'dvniz', 'wasvbi', 'Meetubear', 'JayBracks', 'IIX.AMORE', 'ersp', 'FRUITYPOPPlN', 'gungeon', 'pipnguyen', 'Badjujuxix', 'Jezyi', '_MiIk_', 'BIGG__E', 'BIGG__E', 'kvshy', 'EmoAshh', 'Xavr', 'Mvrianna','Srijon','__Shy___']
       for mod in default_moderators:
           if mod.lower() not in self.moderators:
               self.moderators.append(mod.lower())
@@ -498,19 +494,7 @@ class MyBot(BaseBot):
          if user.username == "TOMY_X":
            print(pos)
   
-    async def on_user_join(self, user: User, position: Union[Position, AnchorPosition]) -> None:
-      privileges = await self.highrise.get_room_privilege(user.id)
-      print(f"{user.username} joined the room with the privileges {privileges}")
-
-      
-      
-
-      await self.highrise.chat(f"Welcome! enjoy ")
-      
-# print(f"{user.username} joined the room standing at {position}")
-      await self.highrise.send_emote(
-        random.choice(['emoji-flex', 'dance-tiktok10', 'emote-snake', 'emote-roll', 'emote-superpunch', 'emote-kicking', 'idle-floorsleeping2', 'emote-hero', 'idle_layingdown2', 'idle_layingdown', 'dance-sexy', 'emoji-hadoken', 'emote-disappear', 'emote-graceful', 'sit-idle-cute', 'idle-loop-aerobics', 'dance-orangejustice', 'emote-rest', 'dance-martial-artist', 'dance-breakdance', 'emote-astronaut', 'emote-zombierun', 'idle_singing', 'emote- frollicking', 'emote-float', 'emote-kicking', 'emote-ninjarun', 'emote-secrethandshake', 'emote-apart', 'emote-headball', 'dance-floss', 'emote-jetpack', 'emote-ghost-idle', 'dance-spiritual', 'dance-robotic', 'dance-metal', 'idle-loop-tapdance', 'idle-dance-swinging', 'emote-mindblown', 'emote-gangnam', 'emote-harlemshake', 'emote-robot', 'emote-nightfever', 'dance-anime', 'idle-guitar', 'emote-headblowup', 'dance-creepypuppet', 'emote-creepycute', 'emote-sleigh', 'emote-hyped', 'dance-jinglebell', 'idle-nervous', 'idle-toilet', 'emote-timejump', 'sit-relaxed', 'dance-kawai', 'idle-wild', 'emote-iceskating', 'sit-open', 'dance-touch']))
-      await self.highrise.chat(f"\n{user.username} dm if you need help ")          
+             
 
 
 
@@ -1153,7 +1137,7 @@ class MyBot(BaseBot):
           except ValueError:
               await self.highrise.chat("CAN YOU WRITE THE RIGHT COMMAND !tip amount")
               return
-          if user.username in ['TOMY_X','MeroHR','mvash', 'NCV.K', 'DeadlyWaifu', 'Louiville', 'lissatrap', 'CoIIeen']:
+          if user.username in ['TOMY_X','MeroHR','Mvash', 'NCV.K', 'DeadlyWaifu', 'Louiville', 'lissatrap', 'CoIIeen', 'PandiStories','StaceyHR','moonshxnee', 'SketchyLove', 'dvniz', 'wasvbi', 'Meetubear', 'JayBracks', 'IIX.AMORE', 'ersp', 'FRUITYPOPPlN', 'gungeon', 'pipnguyen', 'Badjujuxix', 'Jezyi', '_MiIk_', 'BIGG__E', 'BIGG__E', 'kvshy', 'EmoAshh', 'Xavr', 'Mvrianna','Srijon','__Shy___']:
               response = await self.highrise.get_room_users()
               num_users = len(response.content)
               total_gold = tip_amount * num_users
@@ -1492,24 +1476,7 @@ class MyBot(BaseBot):
             except Exception as e:
                 await self.highrise.chat(f"Error: {e}")
 
-        if message.startswith("!vip"):
-           if user.username.lower() in self.moderators or user.username.lower() in self.temporary_vips:
-              split = message.split()
-              if len(split) == 2:
-                  name = split[1].lower()
-                  response = await self.highrise.get_room_users()
-                  users = [content[0] for content in response.content]
-                  try:
-                      for u in users:
-                          u_give = str("@") + str((u.username).lower())
-                          if str((u_give).lower()).strip() == str(name).strip():
-                              await self.highrise.teleport(u.id,Position(x=16.5, y=15.5, z=29.5, facing='FrontRight')) 
-                              break
-                  except:
-                      pass
-              else:
-                  await self.highrise.teleport(user.id,Position(x=16.5, y=15.5, z=29.5, facing='FrontRight'))
-
+        
       
         
         
@@ -3216,19 +3183,46 @@ class MyBot(BaseBot):
     async def on_reaction(self, user: User, reaction: Reaction, receiver: User) -> None:
      try:
 
+      
+      
+      
+       
+      if user.username == "Louiville" or user.username == "lissatrap" or user.username in moderators :
+        if reaction == "heart":
+          await self.highrise.chat(f"{receiver.username} is now a 👑Permanent👑 VIP, given by {user.username}")
+
+          receiver_username = receiver.username.lower()
+          if receiver_username not in self.moderators:
+                self.moderators.append(receiver_username)
+                self.save_moderators()
+
       if reaction =="thumbs"and user.username in moderators:
          target_username = receiver.username
          if target_username not in moderators:
             await self.teleport_user_next_to(target_username, user)
-
       if reaction =="thumbs"and user.username in moderators:
          target_username = receiver.username
-         if target_username not in ['mvash','mvash']:
+         if target_username not in ['Srijon','Srijon']:
             await self.teleport_user_next_to(target_username, user)
 
       if reaction =="thumbs"and user.username in moderators:
          target_username = receiver.username
-         if target_username not in ['ncv.k','ncv.k']:
+         if target_username not in ['__Shy___','__Shy___']:
+            await self.teleport_user_next_to(target_username, user)
+
+      if reaction =="thumbs"and user.username in moderators:
+         target_username = receiver.username
+         if target_username not in ['PandiStories','PandiStories']:
+            await self.teleport_user_next_to(target_username, user)
+
+      if reaction =="thumbs"and user.username in moderators:
+         target_username = receiver.username
+         if target_username not in ['Mvash','Mvash']:
+            await self.teleport_user_next_to(target_username, user)
+
+      if reaction =="thumbs"and user.username in moderators:
+         target_username = receiver.username
+         if target_username not in ['NCV.K','ncv.k']:
             await self.teleport_user_next_to(target_username, user)
 
       if reaction =="thumbs"and user.username in moderators:
@@ -3253,21 +3247,114 @@ class MyBot(BaseBot):
 
       if reaction =="thumbs"and user.username in moderators:
          target_username = receiver.username
-         if target_username not in ['Coiieen','Coiieen']:
+         if target_username not in ['CoIIeen','Coiieen']:
             await self.teleport_user_next_to(target_username, user)
 
-      
-       
-      if user.username == "Louiville" or user.username == "lissatrap" :
-        if reaction == "heart":
-          await self.highrise.chat(f"{receiver.username} is now a 👑Permanent👑 VIP, given by {user.username}")
+      if reaction =="thumbs"and user.username in moderators:
+         target_username = receiver.username
+         if target_username not in ['StaceyHR','StaceyHR']:
+            await self.teleport_user_next_to(target_username, user)
 
-          receiver_username = receiver.username.lower()
-          if receiver_username not in self.moderators:
-                self.moderators.append(receiver_username)
-                self.save_moderators()
+      if reaction =="thumbs"and user.username in moderators:
+         target_username = receiver.username
+         if target_username not in ['moonshxnee','moonshxnee']:
+            await self.teleport_user_next_to(target_username, user)
 
+      if reaction =="thumbs"and user.username in moderators:
+         target_username = receiver.username
+         if target_username not in ['SketchyLove','SketchyLove']:
+            await self.teleport_user_next_to(target_username, user)
 
+      if reaction =="thumbs"and user.username in moderators:
+         target_username = receiver.username
+         if target_username not in ['dvniz','dvniz']:
+            await self.teleport_user_next_to(target_username, user)
+
+      if reaction =="thumbs"and user.username in moderators:
+         target_username = receiver.username
+         if target_username not in ['wasvbi','wasvbi']:
+            await self.teleport_user_next_to(target_username, user)
+
+      if reaction =="thumbs"and user.username in moderators:
+         target_username = receiver.username
+         if target_username not in ['Meetubear','Meetubear']:
+            await self.teleport_user_next_to(target_username, user)
+
+      if reaction =="thumbs"and user.username in moderators:
+         target_username = receiver.username
+         if target_username not in ['JayBracks','JayBracks']:
+            await self.teleport_user_next_to(target_username, user)
+
+      if reaction =="thumbs"and user.username in moderators:
+         target_username = receiver.username
+         if target_username not in ['IIX.AMORE','IIX.AMORE']:
+            await self.teleport_user_next_to(target_username, user)
+
+      if reaction =="thumbs"and user.username in moderators:
+         target_username = receiver.username
+         if target_username not in ['ersp','ersp']:
+            await self.teleport_user_next_to(target_username, user)
+
+      if reaction =="thumbs"and user.username in moderators:
+         target_username = receiver.username
+         if target_username not in ['FRUITYPOPPlN','FRUITYPOPPlN']:
+            await self.teleport_user_next_to(target_username, user)
+
+      if reaction =="thumbs"and user.username in moderators:
+         target_username = receiver.username
+         if target_username not in ['gungeon','gungeon']:
+            await self.teleport_user_next_to(target_username, user)
+
+      if reaction =="thumbs"and user.username in moderators:
+         target_username = receiver.username
+         if target_username not in ['pipnguyen','pipnguyen']:
+            await self.teleport_user_next_to(target_username, user)
+
+      if reaction =="thumbs"and user.username in moderators:
+         target_username = receiver.username
+         if target_username not in ['Badjujuxix','Badjujuxix']:
+            await self.teleport_user_next_to(target_username, user)
+
+      if reaction =="thumbs"and user.username in moderators:
+         target_username = receiver.username
+         if target_username not in ['Jezyi','Jezyi']:
+            await self.teleport_user_next_to(target_username, user)
+
+      if reaction =="thumbs"and user.username in moderators:
+         target_username = receiver.username
+         if target_username not in ['_MiIk_','_MiIk_']:
+            await self.teleport_user_next_to(target_username, user)
+
+      if reaction =="thumbs"and user.username in moderators:
+         target_username = receiver.username
+         if target_username not in ['BIGG__E','BIGG__E']:
+            await self.teleport_user_next_to(target_username, user)
+
+      if reaction =="thumbs"and user.username in moderators:
+         target_username = receiver.username
+         if target_username not in ['BIGG__E','BIGG__E']:
+            await self.teleport_user_next_to(target_username, user)
+
+      if reaction =="thumbs"and user.username in moderators:
+         target_username = receiver.username
+         if target_username not in ['kvshy','kvshy']:
+            await self.teleport_user_next_to(target_username, user)
+
+      if reaction =="thumbs"and user.username in moderators:
+         target_username = receiver.username
+         if target_username not in ['EmoAshh','EmoAshh']:
+            await self.teleport_user_next_to(target_username, user)
+
+      if reaction =="thumbs"and user.username in moderators:
+         target_username = receiver.username
+         if target_username not in ['Xavr','Xavr']:
+            await self.teleport_user_next_to(target_username, user)
+
+      if reaction =="thumbs"and user.username in moderators:
+         target_username = receiver.username
+         if target_username not in ['Mvrianna','Mvrianna']:
+            await self.teleport_user_next_to(target_username, user)
+  
        
       if user.username == "Louiville" or user.username == "lissatrap" :
           if reaction == "wink":
