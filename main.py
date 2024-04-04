@@ -381,7 +381,7 @@ class MyBot(BaseBot):
       self.maze_players = {}
       self.user_points = {}  # Dictionary to store user points
 
-    
+
 
 
     def load_temporary_vips(self):
@@ -415,17 +415,17 @@ class MyBot(BaseBot):
 
 
 
-    
-    
 
 
-    
 
 
-    
 
 
-          
+
+
+
+
+
     async def on_message(self, user_id: str, conversation_id: str, is_new_conversation: bool) -> None:
       response = await self.highrise.get_messages(conversation_id)
       message = "" 
@@ -436,7 +436,7 @@ class MyBot(BaseBot):
       print (message)
       if message == "You got a tip!":
           await self.highrise.send_message(conversation_id, "tysm for tip i wish you enjoy in this party")
-      
+
       if isinstance(response, GetMessagesRequest.GetMessagesResponse):
           if response.messages:
               message = response.messages[0].content
@@ -460,7 +460,7 @@ class MyBot(BaseBot):
 
 
 
-          
+
 
           elif message.lower() == "emotelist":
               print("Message is 'emotelist', responding with emotelist...")
@@ -490,11 +490,11 @@ class MyBot(BaseBot):
                   await self.highrise.send_message(conversation_id, command)
 
     async def on_user_move(self, user: User, pos: Position) -> None:
-        
+
          if user.username == "TOMY_X":
            print(pos)
-  
-             
+
+
 
 
 
@@ -533,7 +533,7 @@ class MyBot(BaseBot):
       elif tip.amount >=10000:
         print(f"[TIP ] {sender.username} tipped {tip.amount} - ohhhhhhhhhhh")
         tip_message = [f"\n {sender.username} tipped {tip.amount} - ohhhhhhhhhh",
-           
+
         ]
         random_word = random.choice(tip_message)
         await self.highrise.chat(f"{random_word}")
@@ -603,7 +603,6 @@ class MyBot(BaseBot):
 
 
 
-    
 
 
 
@@ -614,11 +613,12 @@ class MyBot(BaseBot):
 
 
 
-    
-      
 
 
-   
+
+
+
+
 
     async def on_user_leave(self, user: User) -> None:
         try:
@@ -628,12 +628,12 @@ class MyBot(BaseBot):
         # Handle the error
             print(f"An error occurred while stopping continuous emote: {str(e)}")
         # Other error handling logic
-
+        await asyncio.sleep(5)
         print(f"{user.username} Left the Room")
         joke = random.choice([f"Goodbye @{user.username} see you soon cutie! 💕✨",f"Goodbye @{user.username} come back again cutie! 💕✨"])
         await self.highrise.chat(f"{joke}")
-        await self.highrise.send_emote("emote-bow")
-        
+
+
     async def delayed_message_command(self, message, command):
         # Implementation of delayed_message_command goes here
         pass
@@ -773,9 +773,9 @@ class MyBot(BaseBot):
               "position": Position(requester_position.x, requester_position.y, new_z, requester_position.facing)
             }
             await self.highrise.teleport(user_dict["id"], user_dict["position"])
-      
 
-   
+
+
 
 
     async def on_chat(self, user: User, message: str) -> None:
@@ -811,10 +811,10 @@ class MyBot(BaseBot):
             roomUsers = (await self.highrise.get_room_users()).content
             for roomUser, _ in roomUsers:
                await self.highrise.react("heart", roomUser.id)
-       
+
 #tip 5
 
-       
+
         if message == ("/tip 2 5g") and user.username in moderators:
           roomUsers = (await self.highrise.get_room_users()).content
         # Shuffle the list to ensure randomness
@@ -1151,7 +1151,7 @@ class MyBot(BaseBot):
                       await self.highrise.tip_user(user_id, f"gold_bar_{tip_amount}")
               else:
                   await self.highrise.chat("send gold to send tips")
-      
+
 
         if message == ("/tip 20 1g") and user.username in moderators:
           roomUsers = (await self.highrise.get_room_users()).content
@@ -1163,7 +1163,7 @@ class MyBot(BaseBot):
               await self.highrise.tip_user(roomUser.id, "gold_bar_1")
               await self.highrise.chat(f"Tipped {roomUser.username} 1 gold.")
 
-        
+
 
         if message.startswith("!kick"):
           if user.username.lower() in self.moderators:
@@ -1259,7 +1259,7 @@ class MyBot(BaseBot):
 
 
 
-      
+
         if message.startswith("!time"):
           parts = message.split()
           if len(parts) == 2:
@@ -1282,13 +1282,13 @@ class MyBot(BaseBot):
             response = await self.highrise.get_my_outfit()
             for item in response.outfit:
                 await self.highrise.chat(item.id)
-        
 
 
 
-        
 
-       
+
+
+
         if message.startswith("move"):
             room_dictionary = {"room_1": "65ba7ed30a21dae041d20eec",
                        "room_2": "<>",}
@@ -1322,14 +1322,14 @@ class MyBot(BaseBot):
                 return
 
 
-        
+
 
         if message.startswith("!help"):
                 help_message = (
                     "Available Commands:\n"
                     "\commands you can use:\n \nemotelist  \n sayso @username\n fight @username\n uwu @username\n Example: fight @tomy_x"
-                    
-                    
+
+
                     # ... (other commands)
                 )
 
@@ -1375,7 +1375,7 @@ class MyBot(BaseBot):
               else:
                   await self.highrise.teleport(user.id,Position(x=17.5, y=16.25, z=15.5, facing='FrontRight'))
 
-        
+
 
         if message.startswith("!floor1"):
            if user.username.lower() in self.moderators or user.username.lower() in self.temporary_vips:
@@ -1412,50 +1412,10 @@ class MyBot(BaseBot):
                       pass
               else:
                   await self.highrise.teleport(user.id,Position(x=12.5, y=17.25, z=0.5, facing='FrontRight'))
-                  
+
+
+
         
-
-        if "/hi" in message or "/hello" in message :
-              try:
-                  await self.highrise.chat( "hello, how are you?")
-              except:
-                print("error 3")
-
-        if "/how are you" in message or "/wby" in message :
-              try:
-                  await self.highrise.chat( "I am fine, thank you")
-              except:
-                print("error 3")
-
-        if "/fine" in message or "/good" in message :
-              try:
-                  await self.highrise.chat( "Great to hear that")
-              except:
-                print("error 3")
-
-        if "/what is your name" in message or "/name" in message :
-          try:
-              await self.highrise.chat( "I dont have name but you can call me MINE😍")
-          except:
-            print("error 3")
-
-        if "/I love you" in message or "/ily" in message :
-              try:
-                  await self.highrise.chat( "I love you too❤️")
-              except:
-                print("error 3")
-
-        if "/I hate you" in message or "/ihy" in message :
-              try:
-                  await self.highrise.chat( "Still Love you❤️")
-              except:
-                print("error 3")
-
-        if "/will you marry me" in message or "/wyme" in message :
-              try:
-                  await self.highrise.chat( "I am a bot, but i will marry you🌝❤️")
-              except:
-                print("error 3")
 
 
 
@@ -1476,12 +1436,47 @@ class MyBot(BaseBot):
             except Exception as e:
                 await self.highrise.chat(f"Error: {e}")
 
-        
-      
-        
-        
-        
-       
+
+        if  message.startswith("Wallet"):
+            if user.username in moderators :
+
+                  wallet = (await self.highrise.get_wallet()).content
+                  await self.highrise.send_whisper(user.id, f"The bot wallet contains {wallet[0].amount} {wallet[0].type}")
+
+            else: 
+                await  self.highrise.send_whisper(user.id, f"Only Moderators Can View the Wallet")
+
+        if message == "-gg":
+          shirt = ["shirt-f_punklace"]
+          pant = ["skirt-n_room12019pleatedskirtblack"]
+          item_top = random.choice(shirt)
+          item_bottom = random.choice(pant)
+          xox = await self.highrise.set_outfit(outfit=[
+                  Item(type='clothing', amount=1, id='body-flesh', account_bound=False, active_palette=1),
+                  Item(type='clothing', amount=1, id=item_top, account_bound=False, active_palette=-1),
+                  Item(type='clothing', amount=1, id=item_bottom, account_bound=False, active_palette=-1),
+                  Item(type='clothing', amount=4, id='nose-n_01', account_bound=False, active_palette=4),
+                  Item(type='clothing', amount=1, id='mouth-basic2018openfullpeaked', account_bound=False, active_palette=8),
+
+                  Item(type='clothing', amount=1, id='hair_front-n_basic2018wavypulledback', account_bound=False, active_palette=1),
+                  Item(type='clothing', amount=1, id='hair_back-n_basic2018wavyhighpony', account_bound=False, active_palette=1),
+
+                  Item(type='clothing', amount=1, id='eyebrow-n_basic2018newbrows14', account_bound=False, active_palette=-1),
+                  Item(type='clothing', amount=1, id='eye-n_basic2018dolleyes', account_bound=False, active_palette=-1),
+                  Item(type='clothing', amount=1, id='shoes-n_whitedans', account_bound=False, active_palette=0),
+                  Item(type='clothing', amount=1, id='freckle-n_basic2018freckle35', account_bound=False, active_palette=-1),
+
+
+                  Item(type='clothing', amount=1, id='necklace-n_room32019locknecklace', account_bound=False, active_palette=-1),
+
+
+                  Item(type='clothing', amount=1, id='earrings-n_room12019goldhoops', account_bound=False, active_palette=-1),
+
+
+          ]) 
+          await self.highrise.chat(f"good {xox}")
+
+
 
 
         if message.lower().startswith("/getinventory"):
@@ -1516,11 +1511,11 @@ class MyBot(BaseBot):
                  await self.stop_delayed_messages()
 
 
-        
 
 
 
-        
+
+
 
 
         elif message.startswith("!stop"):
@@ -1549,9 +1544,7 @@ class MyBot(BaseBot):
         elif message.startswith("❤"):
             await self.highrise.react("heart", user.id)
 
-        elif message.lower().startswith("wallet"):
-            wallet = (await self.highrise.get_wallet()).content
-            await self.highrise.chat(f"The bot wallet contains {wallet[0].amount} {wallet[0].type}")
+        
 
         elif message.lower().startswith("users"):
             room_users = (await self.highrise.get_room_users()).content
@@ -1574,7 +1567,7 @@ class MyBot(BaseBot):
 
 
 
-        
+
 
 
 
@@ -1591,13 +1584,13 @@ class MyBot(BaseBot):
             await self.highrise.chat(f": {user.username} - {joke}")
 
         if "Funfact" in message or "funfact" in message:
-            funfact = random.choice(["Honey never spoils. Archaeologists have found edible honey in ancient Egyptian tombs over 3,000 years old.","Bananas are berries, while strawberries are not technically berries but aggregate fruits.","The Eiffel Tower can grow up to 6 inches taller during the summer due to thermal expansion.","दोस्तों क्या आप जानते हैं कि, भारतीय महिलाओं के पास पूरी दुनिया का तकरीबन 11% सोना है जो कि किसी ओर देश की महिलाओं के पास नहीं।","Humans and giraffes have the same number of neck vertebrae—seven.","Octopuses have three hearts.","The shortest war in history was between Britain and Zanzibar on August 27, 1896. It lasted just 38 minutes.","The Great Wall of China is not visible from space with the naked eye.","The Hawaiian alphabet has only 12 letters: A, E, I, O, U, H, K, L, M, N, P, and W.","A group of flamingos is called a 'flamboyance.'","The tongue is the only muscle in the human body that is attached at only one end.","The average person will spend six months of their life waiting for red lights to turn green.","A group of crows is called a 'murder.'","The world's oldest known recipe is for beer and dates back over 4,000 years.","A day on Venus is longer than a year on Venus. It takes about 243 Earth days for Venus to complete one rotation but only 225 Earth days to orbit the Sun.","दोस्तों क्या आप जानते हैं कि, प्लास्टिक सर्जरी की खोज सबसे पहले भारत में ही हुई थी।","The shortest war in history was between Britain and Zanzibar on August 27, 1896. It lasted just 38 minutes.","The word 'nerd' was first coined by Dr. Seuss in his book 'If I Ran the Zoo.'","The unicorn is the national animal of Scotland.","The average person will walk the equivalent of three times around the world in their lifetime.","Cows have best friends and get stressed when they are separated.","The longest time between two twins being born is 87 days.","Astronauts cannot burp in space due to the absence of gravity.","A hummingbird weighs less than a penny.","The electric chair was invented by a dentist.","The oldest known customer service complaint dates back to ancient Babylon, around 1750 BC.","Slugs have four noses.","Baby elephants suck their trunks for comfort, similar to how human babies suck their thumbs.","The Statue of Liberty was a gift from France to the United States and was assembled in New York City in 1886.","The largest known organism on Earth is a fungus located in Oregon's Malheur National Forest. It covers 2.4 square miles.","The first alarm clock could only ring at 4 a.m.","A crocodile's tongue is attached to the roof of its mouth and cannot move.","Sea otters hold hands while sleeping to avoid drifting apart.","The electric chair was invented by a dentist.","The oldest known customer service complaint dates back to ancient Babylon, around 1750 BC.","Slugs have four noses.","Baby elephants suck their trunks for comfort, similar to how human babies suck their thumbs.","The Statue of Liberty was a gift from France to the United States and was assembled in New York City in 1886.","The largest known organism on Earth is a fungus located in Oregon's Malheur National Forest. It covers 2.4 square miles.","The first alarm clock could only ring at 4 a.m.","A crocodile's tongue is attached to the roof of its mouth and cannot move.","Sea otters hold hands while sleeping to avoid drifting apart.","The electric chair was invented by a dentist.","The oldest known customer service complaint dates back to ancient Babylon, around 1750 BC.","Slugs have four noses.","Baby elephants suck their trunks for comfort, similar to how human babies suck their thumbs.","The Statue of Liberty was a gift from France to the United States and was assembled in New York City in 1886.","The largest known organism on Earth is a fungus located in Oregon's Malheur National Forest. It covers 2.4 square miles.","The first alarm clock could only ring at 4 a.m.","A crocodile's tongue is attached to the roof of its mouth and cannot move.","Sea otters hold hands while sleeping to avoid drifting apart.","The electric chair was invented by a dentist.","The oldest known customer service complaint dates back to ancient Babylon, around 1750 BC.","Slugs have four noses.","Baby elephants suck their trunks for comfort, similar to how human babies suck their thumbs.","The Statue of Liberty was a gift from France to the United States and was assembled in New York City in 1886.","The largest known organism on Earth is a fungus located in Oregon's Malheur National Forest. It covers 2.4 square miles.","The first alarm clock could only ring at 4 a.m.","A crocodile's tongue is attached to the roof of its mouth and cannot move.","Sea otters hold hands while sleeping to avoid drifting apart.","The electric chair was invented by a dentist.","The oldest known customer service complaint dates back to ancient Babylon, around 1750 BC.","Slugs have four noses.","Baby elephants suck their trunks for comfort, similar to how human babies suck their thumbs.","The Statue of Liberty was a gift from France to the United States and was assembled in New York City in 1886.","The largest known organism on Earth is a fungus located in Oregon's Malheur National Forest. It covers 2.4 square miles.","The first alarm clock could only ring at 4 a.m.","A crocodile's tongue is attached to the roof of its mouth and cannot move.","Sea otters hold hands while sleeping to avoid drifting apart.","The electric chair was invented by a dentist.","The oldest known customer service complaint dates back to ancient Babylon, around 1750 BC.","Slugs have four noses.","Baby elephants suck their trunks for comfort, similar to how human babies suck their thumbs.","The Statue of Liberty was a gift from France to the United States and was assembled in New York City in 1886.","The largest known organism on Earth is a fungus located in Oregon's Malheur National Forest. It covers 2.4 square miles.","The first alarm clock could only ring at 4 a.m.","A crocodile's tongue is attached to the roof of its mouth and cannot move.","Sea otters hold hands while sleeping to avoid drifting apart.","The electric chair was invented by a dentist.","The oldest known customer service complaint dates back to ancient Babylon, around 1750 BC.","Slugs have four noses.","Baby elephants suck their trunks for comfort, similar to how human babies suck their thumbs.","The Statue of Liberty was a gift from France to the United States and was assembled in New York City in 1886.","The largest known organism on Earth is a fungus located in Oregon's Malheur National Forest. It covers 2.4 square miles.","The first alarm clock could only ring at 4 a.m.","A crocodile's tongue is attached to the roof of its mouth and cannot move.","Sea otters hold hands while sleeping to avoid drifting apart.","The electric chair was invented by a dentist.","The oldest known customer service complaint dates back to ancient Babylon, around 1750 BC.","Slugs have four noses.","Baby elephants suck their trunks for comfort, similar to how human babies suck their thumbs.","The Statue of Liberty was a gift from France to the United States and was assembled in New York City in 1886.","The largest known organism on Earth is a fungus located in Oregon's Malheur National Forest. It covers 2.4 square miles.","The first alarm clock could only ring at 4 a.m.","A crocodile's tongue is attached to the roof of its mouth and cannot move.","Sea otters hold hands while sleeping to avoid drifting apart.","The electric chair was invented by a dentist.","The oldest known customer service complaint dates back to ancient Babylon, around 1750 BC.","Some people can unfocus their eyesight (or make their eyesight blurry) on command","Making fun of a short girls height is indirectly telling her that you are in love with her ??","No matter how wrong she is, if she is short, forgive her. She is just a baby","If you see my typing for to long, just gimme time cuz I'm either tryna find a emoji or spell a word correctly.","you know your friendship elite if it started with 'when I first met you i didn't like you' ","Life is too short to argue just blame your sister for everything and move on","If you are dead inside, go outside ","If she has strict parents,back problems,stays on her phone all day,and gets mad and jealous over the little things and she's 5'0-5'6ft ,Wife her asap","Girls will never admit they like u lol either they text u all day, call you sir or bro, or post stuff on their story hoping you'll slide up","Never trust girls, they screenshot your messages and laugh at u with their friends","Instead of typing 'lol' or 'lmao' imma start using 'salts' which stands for Smiled A Little Then Stopped. It's way more accurate","When i say 'I hate drama' I mean I hate being involved in drama. Other people's drama On the other hand? Huge fan","If a boy cries for you keep him. But if a girl cries for you, it doesn't matter, she always cries","Girls need to realize that if they make the first move they have a 99,9% success rate"])
+            funfact = random.choice(["Honey never spoils. Archaeologists have found edible honey in ancient Egyptian tombs over 3,000 years old.","Bananas are berries, while strawberries are not technically berries but aggregate fruits.","The Eiffel Tower can grow up to 6 inches taller during the summer due to thermal expansion.","Humans and giraffes have the same number of neck vertebrae—seven.","Octopuses have three hearts.","The shortest war in history was between Britain and Zanzibar on August 27, 1896. It lasted just 38 minutes.","The Great Wall of China is not visible from space with the naked eye.","The Hawaiian alphabet has only 12 letters: A, E, I, O, U, H, K, L, M, N, P, and W.","A group of flamingos is called a 'flamboyance.'","The tongue is the only muscle in the human body that is attached at only one end.","The average person will spend six months of their life waiting for red lights to turn green.","A group of crows is called a 'murder.'","The world's oldest known recipe is for beer and dates back over 4,000 years.","A day on Venus is longer than a year on Venus. It takes about 243 Earth days for Venus to complete one rotation but only 225 Earth days to orbit the Sun.","The shortest war in history was between Britain and Zanzibar on August 27, 1896. It lasted just 38 minutes.","The word 'nerd' was first coined by Dr. Seuss in his book 'If I Ran the Zoo.'","The unicorn is the national animal of Scotland.","The average person will walk the equivalent of three times around the world in their lifetime.","Cows have best friends and get stressed when they are separated.","The longest time between two twins being born is 87 days.","Astronauts cannot burp in space due to the absence of gravity.","A hummingbird weighs less than a penny.","The electric chair was invented by a dentist.","The oldest known customer service complaint dates back to ancient Babylon, around 1750 BC.","Slugs have four noses.","Baby elephants suck their trunks for comfort, similar to how human babies suck their thumbs.","The Statue of Liberty was a gift from France to the United States and was assembled in New York City in 1886.","The largest known organism on Earth is a fungus located in Oregon's Malheur National Forest. It covers 2.4 square miles.","The first alarm clock could only ring at 4 a.m.","A crocodile's tongue is attached to the roof of its mouth and cannot move.","Sea otters hold hands while sleeping to avoid drifting apart.","The electric chair was invented by a dentist.","The oldest known customer service complaint dates back to ancient Babylon, around 1750 BC.","Slugs have four noses.","Baby elephants suck their trunks for comfort, similar to how human babies suck their thumbs.","The Statue of Liberty was a gift from France to the United States and was assembled in New York City in 1886.","The largest known organism on Earth is a fungus located in Oregon's Malheur National Forest. It covers 2.4 square miles.","The first alarm clock could only ring at 4 a.m.","A crocodile's tongue is attached to the roof of its mouth and cannot move.","Sea otters hold hands while sleeping to avoid drifting apart.","The electric chair was invented by a dentist.","The oldest known customer service complaint dates back to ancient Babylon, around 1750 BC.","Slugs have four noses.","Baby elephants suck their trunks for comfort, similar to how human babies suck their thumbs.","The Statue of Liberty was a gift from France to the United States and was assembled in New York City in 1886.","The largest known organism on Earth is a fungus located in Oregon's Malheur National Forest. It covers 2.4 square miles.","The first alarm clock could only ring at 4 a.m.","A crocodile's tongue is attached to the roof of its mouth and cannot move.","Sea otters hold hands while sleeping to avoid drifting apart.","The electric chair was invented by a dentist.","The oldest known customer service complaint dates back to ancient Babylon, around 1750 BC.","Slugs have four noses.","Baby elephants suck their trunks for comfort, similar to how human babies suck their thumbs.","The Statue of Liberty was a gift from France to the United States and was assembled in New York City in 1886.","The largest known organism on Earth is a fungus located in Oregon's Malheur National Forest. It covers 2.4 square miles.","The first alarm clock could only ring at 4 a.m.","A crocodile's tongue is attached to the roof of its mouth and cannot move.","Sea otters hold hands while sleeping to avoid drifting apart.","The electric chair was invented by a dentist.","The oldest known customer service complaint dates back to ancient Babylon, around 1750 BC.","Slugs have four noses.","Baby elephants suck their trunks for comfort, similar to how human babies suck their thumbs.","The Statue of Liberty was a gift from France to the United States and was assembled in New York City in 1886.","The largest known organism on Earth is a fungus located in Oregon's Malheur National Forest. It covers 2.4 square miles.","The first alarm clock could only ring at 4 a.m.","A crocodile's tongue is attached to the roof of its mouth and cannot move.","Sea otters hold hands while sleeping to avoid drifting apart.","The electric chair was invented by a dentist.","The oldest known customer service complaint dates back to ancient Babylon, around 1750 BC.","Slugs have four noses.","Baby elephants suck their trunks for comfort, similar to how human babies suck their thumbs.","The Statue of Liberty was a gift from France to the United States and was assembled in New York City in 1886.","The largest known organism on Earth is a fungus located in Oregon's Malheur National Forest. It covers 2.4 square miles.","The first alarm clock could only ring at 4 a.m.","A crocodile's tongue is attached to the roof of its mouth and cannot move.","Sea otters hold hands while sleeping to avoid drifting apart.","The electric chair was invented by a dentist.","The oldest known customer service complaint dates back to ancient Babylon, around 1750 BC.","Slugs have four noses.","Baby elephants suck their trunks for comfort, similar to how human babies suck their thumbs.","The Statue of Liberty was a gift from France to the United States and was assembled in New York City in 1886.","The largest known organism on Earth is a fungus located in Oregon's Malheur National Forest. It covers 2.4 square miles.","The first alarm clock could only ring at 4 a.m.","A crocodile's tongue is attached to the roof of its mouth and cannot move.","Sea otters hold hands while sleeping to avoid drifting apart.","The electric chair was invented by a dentist.","The oldest known customer service complaint dates back to ancient Babylon, around 1750 BC.","Slugs have four noses.","Baby elephants suck their trunks for comfort, similar to how human babies suck their thumbs.","The Statue of Liberty was a gift from France to the United States and was assembled in New York City in 1886.","The largest known organism on Earth is a fungus located in Oregon's Malheur National Forest. It covers 2.4 square miles.","The first alarm clock could only ring at 4 a.m.","A crocodile's tongue is attached to the roof of its mouth and cannot move.","Sea otters hold hands while sleeping to avoid drifting apart.","The electric chair was invented by a dentist.","The oldest known customer service complaint dates back to ancient Babylon, around 1750 BC.","Some people can unfocus their eyesight (or make their eyesight blurry) on command","Making fun of a short girls height is indirectly telling her that you are in love with her ??","No matter how wrong she is, if she is short, forgive her. She is just a baby","If you see my typing for to long, just gimme time cuz I'm either tryna find a emoji or spell a word correctly.","you know your friendship elite if it started with 'when I first met you i didn't like you' ","Life is too short to argue just blame your sister for everything and move on","If you are dead inside, go outside ","If she has strict parents,back problems,stays on her phone all day,and gets mad and jealous over the little things and she's 5'0-5'6ft ,Wife her asap","Girls will never admit they like u lol either they text u all day, call you sir or bro, or post stuff on their story hoping you'll slide up","Never trust girls, they screenshot your messages and laugh at u with their friends","Instead of typing 'lol' or 'lmao' imma start using 'salts' which stands for Smiled A Little Then Stopped. It's way more accurate","When i say 'I hate drama' I mean I hate being involved in drama. Other people's drama On the other hand? Huge fan","If a boy cries for you keep him. But if a girl cries for you, it doesn't matter, she always cries","Girls need to realize that if they make the first move they have a 99,9% success rate"])
             await self.highrise.chat(f": {user.username} - {funfact}")
 
-        
-        
 
-            
+
+
+
         if message.lower().lstrip().startswith(("fight", "hug", "flirt", "stars", "gravity", "uwu", "zero","fashion", "icecream", "punk", "wrong", "sayso", "zombie", "cutey", "pose1", "pose3", "pose5", "pose7", "pose8", "dance", "shuffle", "viralgroove", "weird", "russian", "curtsy", "snowball", "sweating", "snowangel", "cute", "worm", "lambi", "sing", "frog", "energyball", "maniac", "teleport", "float", "telekinesis", "enthused", "confused", "charging", "shopping", "bow", "savage", "kpop", "model", "dontstartnow", "pennydance", "flex", "gagging", "greedy", "cursing", "kiss", "wing", "bashfull", "anime", "airguitar", "revelation", "penguin", "creepycute", "creepy", "sleigh", "hyped", "jingle", "nervous", "gottago", "timejump", "repose", "kawaii", "scritchy", "skating", "touch" )):
                 response = await self.highrise.get_room_users()
                 users = [content[0] for content in response.content]
@@ -1974,72 +1967,72 @@ class MyBot(BaseBot):
             for roomUser, _ in roomUsers:
                await self.highrise.react("heart", roomUser.id)
 
-        if message.startswith("fly"):
+        if message.startswith("p1"):
           if user.username.lower() in self.moderators:
             roomUsers = (await self.highrise.get_room_users()).content
             for roomUser, _ in roomUsers:
                 await self.highrise.send_emote("emote-float", roomUser.id)
 
-        if message.startswith("tele"):
+        if message.startswith("p2"):
           if user.username.lower() in self.moderators:
             roomUsers = (await self.highrise.get_room_users()).content
             for roomUser, _ in roomUsers:
                 await self.highrise.send_emote("emote-teleporting", roomUser.id)
 
-        if message.startswith("shy"):
+        if message.startswith("p3"):
           if user.username.lower() in self.moderators:
             roomUsers = (await self.highrise.get_room_users()).content
             for roomUser, _ in roomUsers:
                 await self.highrise.send_emote("emote-shy2", roomUser.id)
 
-        
-      
+
+
         if message.startswith("kawaii"):
           if user.username.lower() in self.moderators:
             roomUsers = (await self.highrise.get_room_users()).content
             for roomUser, _ in roomUsers:
                 await self.highrise.send_emote("dance-kawai", roomUser.id)
 
-        if message.startswith("punk"):
+        if message.startswith("p4"):
           if user.username.lower() in self.moderators:
             roomUsers = (await self.highrise.get_room_users()).content
             for roomUser, _ in roomUsers:
                 await self.highrise.send_emote("emote-punkguitar", roomUser.id)
 
-        
 
-        if message.startswith("jingle"):
+
+        if message.startswith("p5"):
           if user.username.lower() in self.moderators:
             roomUsers = (await self.highrise.get_room_users()).content
             for roomUser, _ in roomUsers:
                 await self.highrise.send_emote("dance-jinglebell", roomUser.id)
 
-        if message.startswith("flex"):
+        if message.startswith("p6"):
           if user.username.lower() in self.moderators:
             roomUsers = (await self.highrise.get_room_users()).content
             for roomUser, _ in roomUsers:
                 await self.highrise.send_emote("emoji-flex", roomUser.id)
 
-        if message.startswith("push"):
+        if message.startswith("p7"):
           if user.username.lower() in self.moderators:
             roomUsers = (await self.highrise.get_room_users()).content
             for roomUser, _ in roomUsers:
                 await self.highrise.send_emote("dance-employee", roomUser.id)
 
-        
-        if message.startswith("anime"):
+
+        if message.startswith("p8"):
           if user.username.lower() in self.moderators:
             roomUsers = (await self.highrise.get_room_users()).content
             for roomUser, _ in roomUsers:
                 await self.highrise.send_emote("dance-anime", roomUser.id)
 
-        if message.startswith("wild"):
+        if message.startswith("p9"):
           if user.username.lower() in self.moderators:
             roomUsers = (await self.highrise.get_room_users()).content
             for roomUser, _ in roomUsers:
                 await self.highrise.send_emote("idle-wild", roomUser.id)
 
-        if message.startswith("timejump"):
+        if message.startswith("p10"):
           if user.username.lower() in self.moderators:
             roomUsers = (await self.highrise.get_room_users()).content
             for roomUser, _ in roomUsers:
@@ -2047,113 +2040,113 @@ class MyBot(BaseBot):
 
 
 
-        if message.startswith("iceskating"):
+        if message.startswith("p11"):
           if user.username.lower() in self.moderators:
             roomUsers = (await self.highrise.get_room_users()).content
             for roomUser, _ in roomUsers:
                 await self.highrise.send_emote("emote-iceskating", roomUser.id)
 
-        if message.startswith("touch"):
+        if message.startswith("p12"):
           if user.username.lower() in self.moderators:
             roomUsers = (await self.highrise.get_room_users()).content
             for roomUser, _ in roomUsers:
                 await self.highrise.send_emote("dance-touch", roomUser.id)
 
-        if message.startswith("repose"):
+        if message.startswith("p13"):
           if user.username.lower() in self.moderators:
             roomUsers = (await self.highrise.get_room_users()).content
             for roomUser, _ in roomUsers:
                 await self.highrise.send_emote("sit-relaxed", roomUser.id)
 
-        if message.startswith("sleigh"):
+        if message.startswith("p14"):
           if user.username.lower() in self.moderators:
             roomUsers = (await self.highrise.get_room_users()).content
             for roomUser, _ in roomUsers:
                 await self.highrise.send_emote("emote-sleigh", roomUser.id)
 
-        if message.startswith("hyped"):
+        if message.startswith("p15"):
           if user.username.lower() in self.moderators:
             roomUsers = (await self.highrise.get_room_users()).content
             for roomUser, _ in roomUsers:
                 await self.highrise.send_emote("emote-hyped", roomUser.id)
 
-        if message.startswith("pinguin"):
+        if message.startswith("p16"):
           if user.username.lower() in self.moderators:
             roomUsers = (await self.highrise.get_room_users()).content
             for roomUser, _ in roomUsers:
                 await self.highrise.send_emote("dance-pinguin", roomUser.id)
 
-        if message.startswith("zero"):
+        if message.startswith("p17"):
           if user.username.lower() in self.moderators:
             roomUsers = (await self.highrise.get_room_users()).content
             for roomUser, _ in roomUsers:
                 await self.highrise.send_emote("emote-astronaut", roomUser.id)
 
-        if message.startswith("uwu"):
+        if message.startswith("p18"):
           if user.username.lower() in self.moderators:
             roomUsers = (await self.highrise.get_room_users()).content
             for roomUser, _ in roomUsers:
                 await self.highrise.send_emote("idle-uwu", roomUser.id)
 
-        if message.startswith("sayso"):
+        if message.startswith("p19"):
           if user.username.lower() in self.moderators:
             roomUsers = (await self.highrise.get_room_users()).content
             for roomUser, _ in roomUsers:
                 await self.highrise.send_emote("idle-dance-tiktok4", roomUser.id)
 
-        if message.startswith("zombie"):
+        if message.startswith("p20"):
           if user.username.lower() in self.moderators:
             roomUsers = (await self.highrise.get_room_users()).content
             for roomUser, _ in roomUsers:
                 await self.highrise.send_emote("emote-zombierun", roomUser.id)
 
-        if message.startswith("wrong"):
+        if message.startswith("p21"):
           if user.username.lower() in self.moderators:
             roomUsers = (await self.highrise.get_room_users()).content
             for roomUser, _ in roomUsers:
                 await self.highrise.send_emote("dance-wrong", roomUser.id)
 
-        if message.startswith("viral"):
+        if message.startswith("p22"):
           if user.username.lower() in self.moderators:
             roomUsers = (await self.highrise.get_room_users()).content
             for roomUser, _ in roomUsers:
                 await self.highrise.send_emote("dance-tiktok9", roomUser.id)
 
 
-         
-        
 
-        if message.startswith("flirt"):
+
+
+        if message.startswith("p23"):
           if user.username.lower() in self.moderators:
             roomUsers = (await self.highrise.get_room_users()).content
             for roomUser, _ in roomUsers:
                 await self.highrise.send_emote("emote-lust", roomUser.id)
 
-        if message.startswith("sword"):
+        if message.startswith("p24"):
           if user.username.lower() in self.moderators:
             roomUsers = (await self.highrise.get_room_users()).content
             for roomUser, _ in roomUsers:
                 await self.highrise.send_emote("emote-swordfight", roomUser.id)
 
-        if message.startswith("sing"):
+        if message.startswith("p25"):
           if user.username.lower() in self.moderators:
             roomUsers = (await self.highrise.get_room_users()).content
             for roomUser, _ in roomUsers:
                 await self.highrise.send_emote("idle_singing", roomUser.id)
 
-        if message.startswith("cele"):
+        if message.startswith("p26"):
           if user.username.lower() in self.moderators:
             roomUsers = (await self.highrise.get_room_users()).content
             for roomUser, _ in roomUsers:
                 await self.highrise.send_emote("emoji-celebrate", roomUser.id)
 
-        if message.startswith("weird"):
+        if message.startswith("p27"):
           if user.username.lower() in self.moderators:
             roomUsers = (await self.highrise.get_room_users()).content
             for roomUser, _ in roomUsers:
                 await self.highrise.send_emote("dance-weird", roomUser.id)
 
-        if message.startswith("gravity"):
+        if message.startswith("p28"):
           if user.username.lower() in self.moderators:
             roomUsers = (await self.highrise.get_room_users()).content
             for roomUser, _ in roomUsers:
@@ -2161,67 +2154,67 @@ class MyBot(BaseBot):
 
 
 
-        if message.startswith("creepy"):
+        if message.startswith("p29"):
           if user.username.lower() in self.moderators:
             roomUsers = (await self.highrise.get_room_users()).content
             for roomUser, _ in roomUsers:
                 await self.highrise.send_emote("emote-creepycute", roomUser.id)
 
-        if message.startswith("frog"):
+        if message.startswith("p30"):
           if user.username.lower() in self.moderators:
             roomUsers = (await self.highrise.get_room_users()).content
             for roomUser, _ in roomUsers:
                 await self.highrise.send_emote("emote-frog", roomUser.id)
 
-        if message.startswith("gift"):
+        if message.startswith("p31"):
           if user.username.lower() in self.moderators:
             roomUsers = (await self.highrise.get_room_users()).content
             for roomUser, _ in roomUsers:
                 await self.highrise.send_emote("emote-gift", roomUser.id)
 
-        if message.startswith("boxer"):
+        if message.startswith("p32"):
           if user.username.lower() in self.moderators:
             roomUsers = (await self.highrise.get_room_users()).content
             for roomUser, _ in roomUsers:
                 await self.highrise.send_emote("emote-boxer", roomUser.id)
 
-        if message.startswith("fashion"):
+        if message.startswith("p33"):
           if user.username.lower() in self.moderators:
             roomUsers = (await self.highrise.get_room_users()).content
             for roomUser, _ in roomUsers:
                 await self.highrise.send_emote("emote-fashionista", roomUser.id)
 
-        if message.startswith("casual"):
+        if message.startswith("p34"):
           if user.username.lower() in self.moderators:
             roomUsers = (await self.highrise.get_room_users()).content
             for roomUser, _ in roomUsers:
                 await self.highrise.send_emote("idle-dance-casual", roomUser.id)
 
-        if message.startswith("eyes"):
+        if message.startswith("p35"):
           if user.username.lower() in self.moderators:
             roomUsers = (await self.highrise.get_room_users()).content
             for roomUser, _ in roomUsers:
                 await self.highrise.send_emote("emote-hearteyes", roomUser.id)
 
-        if message.startswith("face"):
+        if message.startswith("p36"):
           if user.username.lower() in self.moderators:
             roomUsers = (await self.highrise.get_room_users()).content
             for roomUser, _ in roomUsers:
                 await self.highrise.send_emote("emote-exasperatedb", roomUser.id)
 
-        if message.startswith("enthu"):
+        if message.startswith("p37"):
           if user.username.lower() in self.moderators:
             roomUsers = (await self.highrise.get_room_users()).content
             for roomUser, _ in roomUsers:
                 await self.highrise.send_emote("idle-enthusiastic", roomUser.id)
 
-        if message.startswith("hot"):
+        if message.startswith("p38"):
           if user.username.lower() in self.moderators:
             roomUsers = (await self.highrise.get_room_users()).content
             for roomUser, _ in roomUsers:
                 await self.highrise.send_emote("emote-hot", roomUser.id)
 
-        if message.startswith("toilet"):
+        if message.startswith("p39"):
           if user.username.lower() in self.moderators:
             roomUsers = (await self.highrise.get_room_users()).content
             for roomUser, _ in roomUsers:
@@ -2397,7 +2390,7 @@ class MyBot(BaseBot):
           except:
             print("error 3")
 
-        
+
 
         if "Confused" in message:
           try:
@@ -2842,9 +2835,7 @@ class MyBot(BaseBot):
           await self.highrise.chat("jxospwlsldndnd")
 
 
-        if message.startswith("wallet"):
-                wallet = (await self.highrise.get_wallet()).content
-                await self.highrise.chat(f"The bot wallet contains {wallet[0].amount} {wallet[0].type}")
+
 
         if message.startswith("users"):
                 room_users = (await self.highrise.get_room_users()).content
@@ -2864,12 +2855,12 @@ class MyBot(BaseBot):
 
                   Item(type='clothing', amount=1, id='hair_front-n_basic2020overshoulderwavy', account_bound=False, active_palette=1),
                   Item(type='clothing', amount=1, id='hair_back-n_basic2020overshoulderwavy', account_bound=False, active_palette=1),
-                  
+
                   Item(type='clothing', amount=1, id='eyebrow-n_basic2018newbrows14', account_bound=False, active_palette=-1),
                   Item(type='clothing', amount=1, id='eye-n_basic2018pinkshadow2', account_bound=False, active_palette=7),
                   Item(type='clothing', amount=1, id='shoes-n_whitedans', account_bound=False, active_palette=0),
                   Item(type='clothing', amount=1, id='freckle-n_basic2018freckle35', account_bound=False, active_palette=-1),
-                  
+
                   Item(type='clothing', amount=1, id='glasses-n_room12019halfrimblack', account_bound=False, active_palette=-1),
                   Item(type='clothing', amount=1, id='necklace-n_room32019locknecklace', account_bound=False, active_palette=-1),
                   Item(type='clothing', amount=1, id='bag-n_room32019sweaterwrapblack', account_bound=False, active_palette=-1),
@@ -2879,12 +2870,12 @@ class MyBot(BaseBot):
 
           ]) 
           await self.highrise.chat(f"good {xox}")
-      
+
         if message.lower().startswith("/getoutfit"):
                 response = await self.highrise.get_my_outfit()
                 for item in response.outfit:
                     await self.highrise.chat(item.id)
-      
+
         if message.startswith("❤️"):
           try:
             # Get the count of heart reactions from the user's message
@@ -2901,7 +2892,7 @@ class MyBot(BaseBot):
 
           except ValueError:
             await self.highrise.chat("Please enter a valid number after ❤️.")
-            
+
         if message.startswith("👏"):
           try:
 
@@ -2960,7 +2951,7 @@ class MyBot(BaseBot):
 
           ]) 
           await self.highrise.chat(f"good {xox}")
-      
+
         if message == "-dress90":
           shirt = ["shirt-n_room32019longlineteesweatshirtgrey"]
           pant = ["pants-n_starteritems2019cuffedjeansblue"]
@@ -2996,7 +2987,7 @@ class MyBot(BaseBot):
                   Item(type='clothing', amount=1, id='hair_back-n_basic2018wavymed', account_bound=False, active_palette=39),
                   Item(type='clothing', amount=1, id='nose-n_basic2018newnose04', account_bound=False, active_palette=-1),
                   Item(type='clothing', amount=1, id='hair_front-n_basic2019wavyflipdroop', account_bound=False, active_palette=39),
-                  
+
                   Item(type='clothing', amount=1, id='freckle-n_basic2018freckle22', account_bound=False, active_palette=-1),
                   Item(type='clothing', amount=1, id='blush-n_salonshop2018blush', account_bound=False, active_palette=-1),
                   Item(type='clothing', amount=1, id='sock-n_starteritems2020whitesocks', account_bound=False, active_palette=-1),
@@ -3016,7 +3007,7 @@ class MyBot(BaseBot):
                     "timejump , iceskating , touch , repose , hyped , zero , sayso , zombie ,\n"
                     "wrong , viral , flirt , sword , sing , cele , weird , gravity , creepy , frog , gift , boxer ,\n"
                     "fashion, casual , enthu , hot , toilet \n"
-                    
+
                 )
 
                 # Chunk the message to avoid exceeding message length limits
@@ -3024,7 +3015,7 @@ class MyBot(BaseBot):
                 for i in range(0, len(emotes_message), chunk_size):
                     chunk = emotes_message[i: i + chunk_size]
                     await self.highrise.send_whisper(user.id, chunk)
-        
+
 
         if message.startswith("!commands"):
                 help_message = (
@@ -3034,17 +3025,17 @@ class MyBot(BaseBot):
                     "!mute @username - Mute a user in the room for 1 hour\n"
                     "!unmute @username - Unmute a muted user\n"
                     "!ban @username - Ban a user from the room for 1 hour\n"
-                    
-                  
+
+
                     "Wallet - View the bot's wallet (moderators only)\n"
                     "!floor1  - Teleport  to a lower location (moderators/VIPs)\n"
                     "!floor2 @username - Teleport user to a  location (moderators/VIPs)\n"
                     "!floor3  - Teleport  to a lower location (moderators/VIPs)\n"
                     "!mod @username - Teleport user to a  location (moderators/VIPs)\n"
-                    
-                    
-                  
-                    
+
+
+
+
                     # ... (other commands)
                 )
 
@@ -3054,16 +3045,16 @@ class MyBot(BaseBot):
                     chunk = help_message[i : i + chunk_size]
                     await self.highrise.send_whisper(user.id, chunk)
 
-        
+
         if message.startswith("!commands"):
           help_message = (
-              
+
               "❤️ this reaction make user mod in code permanent (Modrators)\n"
               "😉 this reaction make user mod in code 24h (Modrators)\n"
               "👏  this reaction remove user from  mod in code (Modrators)\n"
               "👏  this reaction remove user from  mod in code (Modrators)\n"
               "👍 This reaction getir any user in any place (moderators)\n"
-              
+
 
 
               # ... (other commands)
@@ -3074,7 +3065,7 @@ class MyBot(BaseBot):
           for i in range(0, len(help_message), chunk_size):
               chunk = help_message[i : i + chunk_size]
               await self.highrise.send_whisper(user.id, chunk)
-      
+
         if message == "-dresss":
           shirt = ["shirt-n_starteritems2019femtshirtwhite"]
           pant = ["skirt-n_starteritems2018whiteskirt"]
@@ -3089,8 +3080,8 @@ class MyBot(BaseBot):
                   Item(type='clothing', amount=1, id='hair_front-n_basic2019wavyflipdroop', account_bound=False, active_palette=39),
                   Item(type='clothing', amount=1, id='freckle-n_basic2018freckle22', account_bound=False, active_palette=-1),
                   Item(type='clothing', amount=1, id='blush-f_blush01', account_bound=False, active_palette=-1),
-                  
-                  
+
+
                   Item(type='clothing', amount=1, id='sock-n_starteritems2020whitesocks', account_bound=False, active_palette=-1),
                   Item(type='clothing', amount=1, id='shoes-n_starteritems2018conversewhite', account_bound=False, active_palette=-1),
                   Item(type='clothing', amount=1, id='mouth-basic2018fullround', account_bound=False, active_palette=24),
@@ -3099,7 +3090,7 @@ class MyBot(BaseBot):
 
           ])
           await self.highrise.chat(f"{xox}")
-      
+
 
         if "Deathyear" in message or "deathyear" in message:
             death_year = random.randint(2023, 2100)
@@ -3153,40 +3144,40 @@ class MyBot(BaseBot):
                 await task
             del self.continuous_emote_tasks[user_id]
 
-    
+
 
     async def on_start(self, session_metadata: SessionMetadata) -> None:
-      
+
         Counter.bot_id = session_metadata.user_id
         print("is booting ...")
         pass
-        
 
-        
-        
+
+
+
         self.highrise.tg.create_task(self.highrise.walk_to(Position(x=0.5, y=0.5, z=1.5, facing='FrontRight')))
         self.load_temporary_vips()
 
         while True:
             await asyncio.sleep(13)
-            
+
             await self.highrise.send_emote(
          random.choice(['emoji-flex', 'dance-tiktok10', 'emote-snake', 'emote-roll', 'emote-superpunch', 'emote-kicking', 'idle-floorsleeping2', 'emote-hero', 'idle_layingdown2', 'idle_layingdown', 'dance-sexy', 'emoji-hadoken', 'emote-disappear', 'emote-graceful', 'sit-idle-cute', 'idle-loop-aerobics', 'dance-orangejustice', 'emote-rest', 'dance-martial-artist', 'dance-breakdance', 'emote-astronaut', 'emote-zombierun', 'idle_singing', 'emote- frollicking', 'emote-float', 'emote-kicking', 'emote-ninjarun', 'emote-secrethandshake', 'emote-apart', 'emote-headball', 'dance-floss', 'emote-jetpack', 'emote-ghost-idle', 'dance-spiritual', 'dance-robotic', 'dance-metal', 'idle-loop-tapdance', 'idle-dance-swinging', 'emote-mindblown', 'emote-gangnam', 'emote-harlemshake', 'emote-robot', 'emote-nightfever', 'dance-anime', 'idle-guitar', 'emote-headblowup', 'dance-creepypuppet', 'emote-creepycute', 'emote-sleigh', 'emote-hyped', 'dance-jinglebell', 'idle-nervous', 'idle-toilet', 'emote-timejump', 'sit-relaxed', 'dance-kawai', 'idle-wild', 'emote-iceskating', 'sit-open', 'dance-touch']))
         while True:
             await asyncio.sleep(500)
             joke = random.choice(["🎀Find A Cutie🎀? Feel free to tip the jar to support the room! Just a reminder that you are worthy and loved! Keep shining Cutie✨" , "Hey there Cuties! 💕✨ Lost? use !help for guidance !emotelist for a full list of emotes"])
             await self.highrise.chat(f"{joke}")
-            
-             
-    
-  
+
+
+
+
     async def on_reaction(self, user: User, reaction: Reaction, receiver: User) -> None:
      try:
 
-      
-      
-      
-       
+
+
+
+
       if user.username == "Louiville" or user.username == "lissatrap" or user.username in moderators :
         if reaction == "heart":
           await self.highrise.chat(f"{receiver.username} is now a 👑Permanent👑 VIP, given by {user.username}")
@@ -3354,8 +3345,8 @@ class MyBot(BaseBot):
          target_username = receiver.username
          if target_username not in ['Mvrianna','Mvrianna']:
             await self.teleport_user_next_to(target_username, user)
-  
-       
+
+
       if user.username == "Louiville" or user.username == "lissatrap" :
           if reaction == "wink":
               await self.highrise.chat(f"{receiver.username} is now a 🎩Temporary🎩 VIP, given by {user.username}")
@@ -3401,14 +3392,14 @@ class MyBot(BaseBot):
     async def on_user_join(self, user: User, position: Union[Position, AnchorPosition]) -> None:
       privileges = await self.highrise.get_room_privilege(user.id)
       print(f"{user.username} joined the room with the privileges {privileges}")
-
+      await asyncio.sleep(5)
       joke = random.choice([f"Welcome @{user.username}  to 🎀Find A Cutie🎀! Let the search for your perfect match begin ! 💞",f"Welcome @{user.username}  to 🎀Find A Cutie🎀! Let the sparks fly ! 💕✨" , f"Welcome @{user.username}  to 🎀Find A Cutie🎀! Let’s find your match made in heaven ! 🤍✨",f"Welcome @{user.username}  to 🎀Find A Cutie🎀! Get ready to find your adorable match and let the love blossom ! 🌸💕",f"Welcome @{user.username}  to 🎀Find A Cutie🎀! Get ready for a cuddle-worthy quest to find your adorable soulmate ! 🧸💖"])
       await self.highrise.chat(f"{joke}")
-   
+
     # print(f"{user.username} joined the room standing at {position}")
-    
-    
-      
+
+
+
     async def send_continuous_emote(self, emote_id: str, user_id: int, delay: float):
         try:
             while True:
@@ -3432,7 +3423,7 @@ class MyBot(BaseBot):
             else:
                 pass  # Default delay of 7.5 seconds
 
-    
+
 
 
     async def command_handler(self, user: User, message: str):
